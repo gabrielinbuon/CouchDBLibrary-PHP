@@ -31,7 +31,7 @@ $create_tpl = array(
 		'isbn' => ''
 );
 ```
-NOTE : Do not change the line code ``` '_id' => 'uid'``` the template method will generate UNIQUE ID and will change it automatically.
+NOTE : Do not change the code ``` '_id' => 'uid'``` the template method will generate UNIQUE ID and will change it automatically. It is mandatory to have this code in your document structure.
 
 Second: we pass the template to template handler (this is mandatory or else create method will not know the document structure)
 ```sh
