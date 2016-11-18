@@ -2,7 +2,7 @@
 Simple CouchDB CURL Library : PHP
 
 This is just a simple library for basic use. Can be extended as it goes.
-If time permit me I will work on improving and from next update it will go as version 1.0 ++
+I will try improving the library if i have time in future.
 
 Please feel free to comment and write your suggestion.
 
