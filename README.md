@@ -33,7 +33,7 @@ $create_tpl = array(
 ```
 NOTE : Do not change the code ``` '_id' => 'uid'``` the template method will generate UNIQUE ID and will change it automatically. It is mandatory to have this code in your document structure.
 
-Second: we pass the template to template handler (this is mandatory or else create method will not know the document structure)
+Second: we pass the template to template handler (this is mandatory or else create method will not know the document structure) so that UNIQUE ID can be created by template handler.
 ```sh
 $obj->templates($create_tpl);
 ```
