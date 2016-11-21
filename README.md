@@ -2,16 +2,16 @@
 Simple CouchDB CURL Library : PHP
 
 This is just a simple library for basic use. Can be extended as it goes.
-I will try improving the library if i have time in future.
+I will try to improving the library if i have time in future.
 
 Please feel free to comment and write your suggestion.
 
 
 ### How to create database
-Do not forget to include the library ```sh require "./lib.php"; ```
+Do not forget to include the library ``` require "./lib.php"; ```
 
 You have to provide your database name in the parameter.
-NOTE - replace ```sh$dbname``` with your database name to be
+NOTE - replace ``` $dbname``` with your database name to be
 ```sh
 $obj->createDatabase($dbname);
 ```
