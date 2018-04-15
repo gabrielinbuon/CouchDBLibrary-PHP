@@ -1,10 +1,7 @@
 # CouchDBLibrary-PHP
 Simple CouchDB CURL Library : PHP
 
-This is just a simple library for basic use. Can be extended as it goes.
-I will try to improving the library if i have time in future.
-
-Please feel free to comment and write your suggestion.
+A simple library for basic use.
 
 
 ### How to create database
