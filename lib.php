@@ -13,7 +13,7 @@ class CouchCommands{
 	
 	/*
 	 * Create new database 
-	 * Use only if you need to create new database
+	 * @param: string ($dbname)
 	*/ 
 	public function createDatabase($dbname){
 		
@@ -60,8 +60,8 @@ class CouchCommands{
 	
 	/*
 	 *  Update document by unique ID
-	 *  @$revID : string
-	 *  @data : array
+	 *  @param : string ($uid)
+	 *  @param : array ($data)
 	*/
 	public function updateDocument($uid, $data){
 		
@@ -87,7 +87,7 @@ class CouchCommands{
 	
 	/*
 	 * Delete document by unique ID
-	 * @param : array(unique ID/Document ID, revision ID)
+	 * @param : array (unique ID/Document ID, revision ID)
 	 */
 	public function deleteDocument(array $arg){
 		$ch = curl_init();
@@ -119,7 +119,7 @@ class CouchCommands{
 		
 		$ch = curl_init();
 		
-		curl_setopt($ch, CURLOPT_URL, 'http://127.0.0.1:5984/_uuids');
+		curl_setopt($ch, CURLOPT_URL, $this->host.'_uuids');
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -127,15 +127,17 @@ class CouchCommands{
 				'Accept: */*'
 		));
 		
-		$response = curl_exec($ch);
-		$_response = json_decode($response, true);
+		$response   = curl_exec($ch);
+		$data       = json_decode($response, true);
 		
-		$UUID = $_response['uuids'][0];	
+		$uuid = $data['uuids'][0];	
 		curl_close($ch);
-		if(empty($UUID)){
-			die('UNABLE TO FETCH UID');
+		if(empty($uuid)){
+                    die('UNABLE TO FETCH UID');
+                    
 		}else{
-			return $UUID;
+                    return $uuid;
+                    
 		}
 		
 	}
@@ -166,15 +168,17 @@ class CouchCommands{
 		}else{
 			$document = [];
 			$counter = count($data->rows);
-			if($counter > 0){ // Only prepare document if $counter is > 0
+			if($counter > 0){
 				
-				for($i =0; $i < $counter; $i++){
-					$uid = $data->rows[$i]->id;
-					$document['data'][] = $this->getDocumentByID($uid);
-				}
-				return $document;
+                            for($i =0; $i < $counter; $i++){
+                                $uid = $data->rows[$i]->id;
+                                $document['data'][] = $this->getDocumentByID($uid);
+                            }
+                            return $document;
+                                
 			}else{
 				return false;
+                                
 			}
 			
 		}
@@ -191,8 +195,8 @@ class CouchCommands{
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'Content-type: application/json',
-				'Accept: */*'
+                    'Content-type: application/json',
+                    'Accept: */*'
 		));
 		
 		$response = curl_exec($ch);		
@@ -201,8 +205,10 @@ class CouchCommands{
 		
 		if(isset($data->error)){
 			return false;
+                        
 		}else{
 			return $data;
+                        
 		}		
 		
 	}
@@ -211,9 +217,9 @@ class CouchCommands{
 	/*
 	 * Template
 	 * Structure your document
-	 * Template is important and allows us to use multiple document structure
+	 * Template allows to use multiple document structure
 	 * You can extend template as per your requirement
-	 * @Param : Paremeter should be Array only
+	 * @Param : array
 	*/
 	public function templates($tpl){
 		$uid = $this->getUID();
@@ -223,16 +229,20 @@ class CouchCommands{
 
 
 	/*
-	* Get CouchDB response in a better format 
-	*/
+         * Get CouchDB response in a better format
+         * @param: json
+         * @return: array (object)
+         */
 	public function getResponse($arg){
 		$response = substr($arg, strpos($arg, '{'));
 		$response = json_decode($response);
 
 		if(isset($response->error)){
-			echo $response->error;
+                    echo $response->error;
+                    
 		}else{
-			echo 'ok';
+                    echo 'ok';
+                    
 		}
 	}
 
