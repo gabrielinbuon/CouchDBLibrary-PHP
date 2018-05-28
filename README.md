@@ -19,6 +19,7 @@ You can store your template in different file inside tpl folder and call when ne
 but for now we will not go deep into that. Anyway, let's look the code below :
 
 - Step 1
+
 	we create array that holds the data of our document structure
 	```sh
 	$create_tpl = array(
@@ -32,11 +33,13 @@ but for now we will not go deep into that. Anyway, let's look the code below :
 	NOTE : Do not change the code ``` '_id' => 'uid'``` the template method will generate UNIQUE ID and will change it automatically. It is mandatory to have this code in your document structure.
 
 - Step 2
+
 	we pass the template to template handler (this is mandatory or else create method will not know the document structure) so that UNIQUE ID can be created by template handler.
 	```sh
 	$obj->templates($create_tpl);
 	```
 - Step 3
+
 	just call create method to create new document
 	```sh
 	$obj->createNewDocument();
